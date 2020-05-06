@@ -10,13 +10,18 @@ function AnimalImage(image_url, title, description, keyword, horns){
   this.horns = horns;
 }
 
+AnimalImage.filterArray = [];
+
 AnimalImage.prototype.renderFilters = function () {
-  const $animalFilterClone = $('option:first-child').clone();
-  $animalFilterClone.attr('value', this.keyword);
-  $animalFilterClone.text(this.keyword);
-  $('select').append($animalFilterClone);
-  //this works but needs an enhancement to only show duplicate keyword once
+  if(!AnimalImage.filterArray.includes(this.keyword)){
+    const $animalFilterClone = $('option:first-child').clone();
+    $animalFilterClone.attr('value', this.keyword);
+    $animalFilterClone.text(this.keyword);
+    $('select').append($animalFilterClone);
+    AnimalImage.filterArray.push(this.keyword);
+  }
 };
+
 
 AnimalImage.prototype.renderImages = function (){
   const $animalTemplateClone = $('#photo-template').clone();
