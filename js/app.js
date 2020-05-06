@@ -20,29 +20,31 @@ AnimalImage.prototype.renderFilters = function () {
 
 AnimalImage.prototype.renderImages = function (){
   const $animalTemplateClone = $('#photo-template').clone();
-
+  $animalTemplateClone.removeAttr('id').addClass('photo');
   $animalTemplateClone.find('h2').text(this.title);
   $animalTemplateClone.find('img').attr('src', this.image_url);
   $animalTemplateClone.find('p').text(this.description);
-
+  // add data containing keyword to $animalTemplateClone
+  $animalTemplateClone.data('keyword', this.keyword);
   $('main').append($animalTemplateClone);
 };
 
 $.get('data/page-1.json', function(data){
-
   data.forEach(animal => {
-
-
     const newAnimal = new AnimalImage(animal.image_url, animal.title, animal.description, animal.keyword, animal.horns);
-
     newAnimal.renderImages();
     newAnimal.renderFilters();
   });
 });
 
 $('select').on('change', function(){
-  console.log($(this).val());
-  // click handler works, but still need to add what happens - shows images based on keyword or "default" value
+  // hide all photos
+  $('.photo').hide();
+  // render photos of animals matching keyword
+  // jQuery .each takes in an index and then a value
+  $('.photo').each((index, photo) => {
+    if ($(this).val() === $(photo).data('keyword')) {
+      $(photo).show();
+    }
+  })
 });
-
-
