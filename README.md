@@ -45,9 +45,9 @@ Actual time needed to complete: 2 hours
 
 ## Feature: Templating
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 30 min
 
-Start time: _____
+Start time: 5:36
 
 Finish time: _____
 
