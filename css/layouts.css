@@ -7,17 +7,8 @@ section {
   width: 200px;
 }
 
-/* DONE: remove first photo-template section */
-section:first-child {
-  display: none;
-}
-
 img {
   height: 200px;
   width: 200px;
 }
-
-/* p {
-  width: 200px;
-} */
 
