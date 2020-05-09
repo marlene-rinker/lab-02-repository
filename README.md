@@ -1,7 +1,6 @@
 # lab-02-repository
 
-
-## Feature: Display images
+## Feature #1: Display images
 
 Estimate of time needed to complete: 30 minutes
 
@@ -12,7 +11,7 @@ Finish time: 4:07 pm
 Actual time needed to complete: 35 minutes
 
 
-## Feature: Filter images
+## Feature #2: Filter images
 
 Estimate of time needed to complete: 30 minutes
 
@@ -23,7 +22,7 @@ Finish time: 5:45
 Actual time needed to complete: an hour and a half approx. - not finished
 
 
-## Feature: Style the application
+## Feature #3: Style the application
 
 Estimate of time needed to complete: 30 minutes
 
@@ -33,42 +32,35 @@ Finish time: 5:54
 
 Actual time needed to complete: 9 minutes (but not done)
 
-## Feature: Pagination
 
-Estimate of time needed to complete: one hour
+## Feature #4: Pagination
 
-Start time: 3:30
+Estimate of time needed to complete: 1hr
 
-Finish time: 5:30
+Start time: 3:15pm
 
-Actual time needed to complete: 2 hours
+Finish time: 3:00pm the next day
 
-## Feature: Templating
+Actual time needed to complete: 3.5hours+
 
-Estimate of time needed to complete: _____
 
-Start time: _____
+## Feature #5: Templating
 
-Finish time: _____
+Estimate of time needed to complete: 1 hour
 
-Actual time needed to complete: _____
+Start time: 3:00pm
 
-## Feature: Styling with Flexbox
+Finish time: 3:45pm
 
-Estimate of time needed to complete: _____
+Actual time needed to complete: 45min
 
-Start time: _____
 
-Finish time: _____
+## Feature #6: Sort the images
 
-Actual time needed to complete: _____
+Estimate of time needed to complete: 45min
 
-## Feature: Sort Images
+Start time: 3:45pm
 
-Estimate of time needed to complete: _____
+Finish time: 4:15pm
 
-Start time: _____
-
-Finish time: _____
-
-Actual time needed to complete: _____
+Actual time needed to complete: 30min
