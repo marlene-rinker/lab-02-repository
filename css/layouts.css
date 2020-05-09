@@ -1,15 +1,10 @@
 main {
-  overflow:hidden;
+  overflow: hidden;
 }
 
 section {
-  float:left;
+  float: left;
   width: 200px;
-}
-
-/* DONE: remove first photo-template section */
-section:first-child {
-  display: none;
 }
 
 img {
@@ -17,7 +12,4 @@ img {
   width: 200px;
 }
 
-/* p {
-  width: 200px;
-} */
 

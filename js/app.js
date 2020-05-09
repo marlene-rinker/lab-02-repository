@@ -1,55 +1,81 @@
 'use strict';
 
-//website should render animal images
-
-function AnimalImage(image_url, title, description, keyword, horns){
+function AnimalImage(image_url, title, description, keyword, horns, page){
   this.image_url = image_url;
   this.title = title;
   this.description = description;
   this.keyword = keyword;
   this.horns = horns;
+  this.page = page;
+  AnimalImage.all.push(this);
 }
 
-AnimalImage.filterArray = [];
+// come back to this
+// AnimalImage.prototype.renderFilters = function () {
+//   if(!AnimalImage.filterArray.includes(this.keyword)){
+//     const $animalFilterClone = $('option:first-child').clone();
+//     $animalFilterClone.attr('value', this.keyword);
+//     $animalFilterClone.text(this.keyword);
+//     $('select').append($animalFilterClone);
+//     AnimalImage.filterArray.push(this.keyword);
+//   }
+// };
 
-AnimalImage.prototype.renderFilters = function () {
-  if(!AnimalImage.filterArray.includes(this.keyword)){
-    const $animalFilterClone = $('option:first-child').clone();
-    $animalFilterClone.attr('value', this.keyword);
-    $animalFilterClone.text(this.keyword);
-    $('select').append($animalFilterClone);
-    AnimalImage.filterArray.push(this.keyword);
-  }
-};
+AnimalImage.all = [];
 
+AnimalImage.shownImages = 'page-1';
 
 AnimalImage.prototype.renderImages = function (){
-  const $animalTemplateClone = $('#photo-template').clone();
-  $animalTemplateClone.removeAttr('id').addClass('photo');
-  $animalTemplateClone.find('h2').text(this.title);
-  $animalTemplateClone.find('img').attr('src', this.image_url);
-  $animalTemplateClone.find('p').text(this.description);
-  // add data containing keyword to $animalTemplateClone
-  $animalTemplateClone.data('keyword', this.keyword);
-  $('main').append($animalTemplateClone);
+  const template = Handlebars.compile($('#animal-template').html());
+  const result = template(this);
+  $('main').append(result);
 };
 
-$.get('data/page-1.json', function(data){
-  data.forEach(animal => {
-    const newAnimal = new AnimalImage(animal.image_url, animal.title, animal.description, animal.keyword, animal.horns);
-    newAnimal.renderImages();
-    newAnimal.renderFilters();
-  });
-});
+function handleData(dataFromFile, pageNumber) {
+  dataFromFile.forEach(val => createAnimalImages(val, pageNumber));
 
-$('select').on('change', function(){
-  // hide all photos
-  $('.photo').hide();
-  // render photos of animals matching keyword
-  // jQuery .each takes in an index and then a value
-  $('.photo').each((index, photo) => {
-    if ($(this).val() === $(photo).data('keyword')) {
-      $(photo).show();
+  AnimalImage.all.forEach(img => img.renderImages());
+}
+
+function createAnimalImages(animal, page) {
+  new AnimalImage(animal.image_url, animal.title, animal.description, animal.keyword, animal.horns, page);
+}
+
+// switch pages
+
+const switchPages = () => {
+  $('section').hide();
+  if(AnimalImage.shownImages === 'page-1') {
+    AnimalImage.shownImages = 'page-2';
+    $('.page-2').show();
+  } else {
+    AnimalImage.shownImages = 'page-2';
+    $('.page-1').show();
+  }
+}
+
+$('#switch').on('click', switchPages);
+
+$.get('data/page-1.json', data => {
+  handleData(data, 'page-1');
+});
+$.get('data/page-2.json', data => {
+  handleData(data, 'page-2');
+  $('.page-2').hide();
+})
+
+$('#sort').on('click', () => {
+  $('main').empty();
+  AnimalImage.all.sort((left, right) => {
+    if(left.horns > right.horns) {
+      return 1;
+    } else if (left.horns < right.horns) {
+      return -1;
+    } else {
+      return 0;
     }
   })
+  AnimalImage.all.forEach(img => img.renderImages());
+  $('section').hide();
+  $(`.${AnimalImage.shownImages}`).show();
 });
