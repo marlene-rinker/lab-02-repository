@@ -1,15 +1,26 @@
+
 main {
+  display: flex;
+  flex-wrap: wrap;
   overflow: hidden;
 }
 
 section {
-  float: left;
+  margin-top: 20px;
   width: 200px;
 }
 
 img {
   height: 200px;
   width: 200px;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+select {
+  margin-top: 20px;
 }
 
 

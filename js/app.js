@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO: figure out why page-1 is rendering twice
+
 function AnimalImage(image_url, title, description, keyword, horns, page){
   this.image_url = image_url;
   this.title = title;
@@ -42,15 +44,16 @@ function createAnimalImages(animal, page) {
 }
 
 // switch pages
-
 const switchPages = () => {
   $('section').hide();
   if(AnimalImage.shownImages === 'page-1') {
     AnimalImage.shownImages = 'page-2';
     $('.page-2').show();
+  sortByTitle();
   } else {
     AnimalImage.shownImages = 'page-2';
     $('.page-1').show();
+  sortByTitle();
   }
 }
 
@@ -58,24 +61,52 @@ $('#switch').on('click', switchPages);
 
 $.get('data/page-1.json', data => {
   handleData(data, 'page-1');
+  sortByTitle();
 });
 $.get('data/page-2.json', data => {
   handleData(data, 'page-2');
   $('.page-2').hide();
 })
 
-$('#sort').on('click', () => {
+$('#sort-horns').on('click', () => {
   $('main').empty();
-  AnimalImage.all.sort((left, right) => {
-    if(left.horns > right.horns) {
-      return 1;
-    } else if (left.horns < right.horns) {
-      return -1;
-    } else {
-      return 0;
-    }
-  })
-  AnimalImage.all.forEach(img => img.renderImages());
-  $('section').hide();
-  $(`.${AnimalImage.shownImages}`).show();
-});
+    AnimalImage.all.sort((left, right) => {
+      if(left.horns > right.horns) {
+        return 1;
+      } else if (left.horns < right.horns) {
+        return -1;
+      } else {
+        return 0;
+      }
+    })
+    AnimalImage.all.forEach(img => img.renderImages());
+    $('section').hide();
+    $(`.${AnimalImage.shownImages}`).show();
+  });
+
+  $('#sort-title').on('click', () => {
+    sortByTitle();
+  });
+
+
+  function sortByTitle() {  
+    $('main').empty();
+      AnimalImage.all.sort((left, right) => {
+        if(left.title > right.title) {
+          return 1;
+        } else if (left.title < right.title) {
+          return -1;
+        } else {
+          return 0;
+        }
+      })
+      AnimalImage.all.forEach(img => img.renderImages());
+      $('section').hide();
+      $(`.${AnimalImage.shownImages}`).show();
+    };
+
+    
+  
+  // select class
+  // if class === horns; change class to title
+  // if class === title; change class to horns
