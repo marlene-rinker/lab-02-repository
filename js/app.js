@@ -20,7 +20,6 @@ function AnimalImage(image_url, title, description, keyword, horns, page){
 
 AnimalImage.filterArray = [];
 
-// come back to this
 function renderFilters() {
   $('option').not(':first').remove();
   AnimalImage.filterArray[AnimalImage.shownImages].forEach(val => {
@@ -101,7 +100,11 @@ $('#sort-title').on('click', () => {
 });
 
 $('#dropdown').on('change', () => {
-  // TODO: make dropdown filter work
+  let chosen = $( "#dropdown option:selected" ).text();
+  console.log (chosen);
+  $('section').hide();
+  $(`.${chosen}` + `.${AnimalImage.shownImages}`).show()
+
 });
 
 function sortByTitle() {
