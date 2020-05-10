@@ -7,7 +7,13 @@ main {
 
 section {
   margin-top: 20px;
-  width: 200px;
+  width: 230px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 20px;
+  border: 2px blue solid;
+  border-radius: 5px;
+  align-content: center;
 }
 
 img {
