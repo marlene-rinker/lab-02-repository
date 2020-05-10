@@ -1,0 +1,32 @@
+button {
+  height: 20px;
+  width: 150px;
+  margin-top: 20px;
+  margin-right: 5px;
+}
+
+img {
+  height: 200px;
+  width: 200px;
+}
+
+h1 {
+  padding-top: 10px;
+  color: teal;
+  font-size: 30px;
+}
+
+h2 {
+  height: 20px;
+  font-weight: bold;
+}
+
+.horn-number {
+  color: teal;
+}
+
+section {
+  border: 2px black solid;
+  border-radius: 5px;
+  align-content: center;
+}
